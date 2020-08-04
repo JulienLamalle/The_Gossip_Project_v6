@@ -1,11 +1,13 @@
 <div class ='align-middle text-center'>
-  <div class="card mt-5 ml-5 mr-5" style="height:200px">
+  <div class="card mt-6 ml-6 mr-6" style="height:280px">
     <div class="card-body">
       <h5 class="card-title"><%= @gossip.title %></h5>
       <p class="card-text"><%= @gossip.content %></p>
       <p class="card-title"><%= link_to "#{(@gossip.user.first_name)+ " " +(@gossip.user.last_name)}" , user_path(:id => @gossip.user.id)%></p>
       <p class="card-text"><%= link_to @gossip.user.city.name, city_path(:id => @gossip.user.city.id) %></p>
       <p class="card-title"><%= @gossip.created_at.strftime("%d/%m/%Y") %></p>
+      <%= link_to "Editer ce gossip", edit_gossip_path(:id => @gossip.id), class: 'btn btn-outline-danger btn-sm' %>
+      <%= link_to "Supprimer ce gossip", @gossip, method: :delete, data: {confirm: "Voulez-vous vraiment supprimer ce gossip ?"} , class: 'btn btn-danger btn-sm' %>
     </div>
   </div>
 </div>
