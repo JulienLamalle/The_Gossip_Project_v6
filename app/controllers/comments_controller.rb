@@ -27,14 +27,15 @@ class CommentsController < ApplicationController
 
   def edit
     set_comment
+    @gossip = Gossip.find(params[:gossip_id])
   end
 
   def update
     set_comment
-    comment_params
-    if @comment.update(comment_param)
+    comment_params 
+    if @comment.update(comment_params)
       flash[:success] = "Merci #{@comment.user.first_name} ! Nous avons pu modifier votre commentaire : #{@comment.content} "
-      redirect_to :controller => 'gossips', action: 'show', id: Gossip.find(params[:gossip_id])
+      redirect_to :controller => 'gossips', :action => 'show' , id: Gossip.find(params[:gossip_id])
     else
       flash[:danger] = "Nous n'avons pas réussi à modifier le commentaire pour la (ou les) raison(s) suivante(s) : #{@comment.errors.full_messages.each {|message| message}.join('')}"
       redirect_to :action => 'edit'
@@ -57,6 +58,6 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.require(:comment).permit(:content)
+      params.permit(:content)
     end
 end
