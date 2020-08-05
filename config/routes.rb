@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
   get 'dynamic_pages/home'
 
   get '/index', to: 'static_pages#index'
@@ -11,4 +12,7 @@ Rails.application.routes.draw do
   resources :gossips
   resources :users
   resources :cities, only: [:show]
+  resources :gossips do
+    resources :comments
+  end
 end

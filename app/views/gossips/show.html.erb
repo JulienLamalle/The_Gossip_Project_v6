@@ -11,3 +11,23 @@
     </div>
   </div>
 </div>
+
+<div class="text-center" style="padding: 50px 0">
+  <%= link_to "Commenter ce gossip", new_gossip_comment_path(:gossip_id => @gossip.id ), class: 'btn btn-outline-danger btn-sm' %>
+</div>
+
+<div class="col-12 text-center">
+  <% @comments.each do |comment| %>
+    <% if comment.gossip_id == @gossip.id %>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="mt-0 text-center"><%= comment.content  %></h5>
+          <p class="card-text text-center"> Un commentaire de : <%= link_to comment.user.first_name , user_path(:id => comment.user.id)%></p>
+          <%= link_to "Afficher ce commentaire", gossip_comment_path(:id => comment.id, :gossip_id => @gossip.id), class: 'btn btn-outline-secondary btn-sm' %>
+          <%= link_to 'Editer ce commentaire', edit_gossip_comment_path(:id => comment.id, :gossip_id => @gossip.id), class: 'btn btn-outline-danger btn-sm' %> 
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+

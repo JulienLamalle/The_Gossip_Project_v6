@@ -6,6 +6,7 @@ class GossipsController < ApplicationController
 
   def show
     @gossip = Gossip.find(params[:id])
+    @comments = Comment.all
   end
 
   def new
@@ -17,7 +18,7 @@ class GossipsController < ApplicationController
 
     if @gossip.save
       flash[:success] = "Merci #{@gossip.user.first_name} ! Nous avons pu créer le gossip : #{@gossip.title} "
-      redirect_to :controller => 'static_pages', :action => 'index' 
+      redirect_to :controller => 'static_pages', :action => 'index'
     else
       flash[:danger] = "Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) : #{@gossip.errors.full_messages.each {|message| message}.join('')}"
       render :action => 'new'
@@ -38,10 +39,6 @@ class GossipsController < ApplicationController
       flash[:danger] = "Nous n'avons pas réussi à modifier le potin pour la (ou les) raison(s) suivante(s) : #{@gossip.errors.full_messages.each {|message| message}.join('')}"
       render :action => 'edit'
     end
-  end
-
-  def delete
-    @gossip = Gossip.find(params[:id])
   end
 
   def destroy

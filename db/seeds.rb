@@ -70,3 +70,12 @@ end
   )
   puts "Seeding PM '#{private_message.content}' from User #{private_message.sender_id} to User #{private_message.recipient_id}"
 end
+
+20.times do
+  comment = Comment.create(
+    user_id: users[rand(0..9)].id,
+    gossip_id: gossips[rand(0..19)].id,
+    content: Faker::TvShows::GameOfThrones.quote 
+  )
+  puts "Seeding Comment '#{comment.content}' from User #{comment.user_id} to gossip #{comment.gossip_id}"
+end
