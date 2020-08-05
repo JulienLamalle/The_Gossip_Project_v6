@@ -9,6 +9,7 @@
       <div class="card-body">
         <h5 class="mt-0 text-center"><%= gossip.title  %></h5>
         <p class="card-text text-center"> Un gossip de : <%= link_to gossip.user.first_name , user_path(:id => gossip.user.id)%></p>
+        <p>Ce gossip cumule <%= Comment.all.count {|comment| comment.gossip_id == gossip.id} %> commentaire(s)</p>
         <%= link_to "Afficher ce gossip", gossip_path(:id => gossip.id), class: 'btn btn-outline-danger btn-sm' %>
       </div>
     </div>

@@ -10,6 +10,7 @@
       <label for="content">Saisis ici le nouveau contenu de ton commentaire:</label>
       <textarea class="form-control" rows="3" placeholder="Entrez ici le contenu de votre commentaire" name='content'></textarea> 
     </div>
-    <button type="submit" class="btn btn-danger align-center">Valider</button>
+    <button type="submit" class="btn btn-danger align-center" style="margin: 20px">Valider</button>
   </form>
+  <%= button_to 'Supprimer ce commentaire', gossip_comment_path(@comment), method: 'delete', data: { confirm: 'Voulez-vous vraiment supprimer ce gossip ?' }  , class: 'btn btn-danger' %>
 </div>

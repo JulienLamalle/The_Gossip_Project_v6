@@ -43,10 +43,16 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+    set_comment
+    puts "je destroy"
+    if @comment.destroy
+      puts 'on est dans le if'
+      flash[:success] = "Merci #{@comment.user.first_name} ! Nous avons pu supprimer le commentaire : #{@comment.content} "
+      redirect_to :controller => 'static_pages', :action => 'index'
+    else
+      puts 'on est dans le else'
+      flash[:danger] = "Nous n'avons pas réussi à suppimer le commentaire pour la (ou les) raison(s) suivante(s) : #{@comment.errors.full_messages.each {|message| message}.join('')}"
+      render :action => 'edit'
     end
   end
 
