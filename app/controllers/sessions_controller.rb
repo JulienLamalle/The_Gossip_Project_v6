@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = " Bonjour #{user.first_name}, tu es bien connecté :) "
-      redirect_to :controller => 'dynamic_pages', :action => 'home', :id => current_user.id
+      redirect_to :controller => 'users', :action => 'index', :id => current_user.id
     else
       flash.now[:danger] = 'Erreur dans la combinaision Email/Mot de passe'
       render 'new'

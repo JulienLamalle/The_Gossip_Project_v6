@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  def index
+    params[:user] = User.find(params[:id])
+    params[:gossips] = Gossip.where(user_id: params[:user].id)
+  end
+
   def show
     @user = User.find(params[:id])
     @user_city = City.find(@user.city_id)
