@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-
+  before_action :authenticate_user, only: [:new, :edit, :create, :update]
+  
   def index
     @comments = Comment.all
   end
@@ -14,7 +15,7 @@ class CommentsController < ApplicationController
 
 
   def create
-    @comment = Comment.new(content: params[:content], user: User.find(11), gossip: Gossip.find(params[:gossip_id]))
+    @comment = Comment.new(content: params[:content], user: User.find(current_user.id), gossip: Gossip.find(params[:gossip_id]))
 
     if @comment.save
       flash[:success] = "Merci #{@comment.user.first_name} ! Nous avons pu créer votre commentaire : #{@comment.content} "
@@ -65,5 +66,12 @@ class CommentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def comment_params
       params.permit(:content)
+    end
+
+    def authenticate_user
+      unless current_user 
+        flash[:danger] = "Pour commenter un gossip, vous devez être connecté..."
+        redirect_to new_session_path
+      end
     end
 end

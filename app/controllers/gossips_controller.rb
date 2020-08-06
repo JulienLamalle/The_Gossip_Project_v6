@@ -1,4 +1,5 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, only: [:new, :show, :edit, :create, :update] 
 
   def index
     @gossips = Gossip.all
@@ -14,7 +15,7 @@ class GossipsController < ApplicationController
   end
 
   def create
-    @gossip = Gossip.new(title: params[:title], content: params[:content],user: User.find(11)) 
+    @gossip = Gossip.new(title: params[:title], content: params[:content],user: User.find(current_user.id)) 
 
     if @gossip.save
       flash[:success] = "Merci #{@gossip.user.first_name} ! Nous avons pu créer le gossip : #{@gossip.title} "
@@ -50,6 +51,15 @@ class GossipsController < ApplicationController
     else
       flash[:danger] = "Nous n'avons pas réussi à suppimer le potin pour la (ou les) raison(s) suivante(s) : #{@gossip.errors.full_messages.each {|message| message}.join('')}"
       render :action => 'show'
+    end
+  end
+
+  private
+
+  def authenticate_user
+    unless current_user 
+      flash[:danger] = "Pour lire ou partager un gossip vous devez être connecté..."
+      redirect_to new_session_path
     end
   end
 end

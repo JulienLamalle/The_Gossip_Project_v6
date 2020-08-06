@@ -3,23 +3,21 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # cherche s'il existe un utilisateur en base avec l’e-mail
     user = User.find_by(email: params[:email])
-    # on vérifie si l'utilisateur existe bien ET si on arrive à l'authentifier (méthode bcrypt) avec le mot de passe 
+    
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      # redirige où tu veux, avec un flash ou pas
-      flash[:success] = "Holà #{user.first_name}, you successfuly logged in"
-      redirect_to '/'
+      flash[:success] = " Bonjour #{user.first_name}, tu es bien connecté :) "
+      redirect_to :controller => 'dynamic_pages', :action => 'home', :id => current_user.id
     else
-      flash.now[:danger] = 'Invalid email/password combination'
+      flash.now[:danger] = 'Erreur dans la combinaision Email/Mot de passe'
       render 'new'
     end
   end
 
   def destroy
     session.delete(:user_id)
-    flash[:success] = "Successfuly logged out !"
-    redirect_to '/'
+    flash[:success] = "Tu es bien déconnecté, ciao l'artiste !"
+    redirect_to :controller => 'static_pages', :action => 'index'
   end
 end
