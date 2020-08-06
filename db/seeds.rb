@@ -34,8 +34,9 @@ end
   last_name: Faker::Name.last_name,
   email: Faker::Internet.email,
   description: Faker::Lorem.sentence,
-  age: rand(18..99),
-  city_id: cities[rand(0..9)].id
+  age: rand(18..70),
+  city_id: cities[rand(0..9)].id,
+  password: "Azerty"
   )
   users << user
   puts "Seeding User #{user.first_name} #{user.last_name}"
