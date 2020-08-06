@@ -47,7 +47,7 @@
                   <%= link_to current_user.first_name, {controller: "dynamic_pages", action: "home", id: current_user.id}, class: "dropdown-item" %>
                   <%= link_to "Déconnexion", session_path(session.id), method: :delete, class: "dropdown-item" %>
                 <% else %>
-                  <%= link_to "Inscivez-vous", {controller: "users", action: "new"}, class: "dropdown-item" %>
+                  <%= link_to "Inscrivez-vous", {controller: "users", action: "new"}, class: "dropdown-item" %>
                   <%= link_to "Connexion", {controller: "sessions", action: "new"}, class: "dropdown-item" %>
                   <% end %>
               </div>
