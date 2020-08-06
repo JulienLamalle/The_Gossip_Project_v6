@@ -22,13 +22,13 @@ users = Array.new
 private_messages = Array.new
 
 
-10.times do 
+30.times do 
   city = City.create(name: Faker::Address.city, zip_code: Faker::Address.zip_code)
   cities << city
   puts "Seeding City #{city.name} #{city.zip_code}"
 end
 
-11.times do 
+20.times do 
   user = User.create(
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
@@ -42,7 +42,7 @@ end
   puts "Seeding User #{user.first_name} #{user.last_name}"
 end
 
-10.times do 
+15.times do 
   tag = Tag.create(title: "#" + Faker::Verb.base)
   tags << tag
   puts "Seeding #{tag.title}"
