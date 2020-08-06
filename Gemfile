@@ -62,6 +62,7 @@ gem 'table_print'
 gem 'faker'
 gem 'time_difference'
 gem 'rspec-rails'
+gem 'bcrypt'
 # rails g rename:into your_new_app_name
 gem 'rename', group: :development
 gem 'rails-erd', group: :development

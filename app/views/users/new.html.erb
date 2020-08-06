@@ -1,0 +1,36 @@
+
+<h1 class="text-center new" style="margin-bottom: 25px">Inscris toi et partage enfin tes meilleurs potins!</h1>
+<div class="container text-center">
+  <form action= <%= new_user_path %> method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <div class="form-group">
+      <label for="Title">Ton prénom:</label>
+      <input type="text" class="form-control"  aria-describedby="authorHelp" placeholder="Entre ici ton prénom" name='first_name'>
+    </div>
+    <div class="form-group">
+      <label for="Title">Ton nom:</label>
+      <input type="text" class="form-control"  aria-describedby="authorHelp" placeholder="Entre ici ton nom" name='last_name'>
+    </div>
+    <div class="form-group">
+      <label for="Title">Ton âge:</label>
+      <input type="text" class="form-control"  aria-describedby="authorHelp" placeholder="Entre ici ton âge" name='age'>
+    </div>
+    <div class="form-group">
+      <label for="Title">Ta description:</label>
+      <input type="text" class="form-control"  aria-describedby="authorHelp" placeholder="Entre ici ta description" name='description'>
+    </div>
+    <div class="form-group">
+      <label for="Title">Ton email:</label>
+      <input type="text" class="form-control"  aria-describedby="authorHelp" placeholder="Entre ici ton email" name='email'>
+    </div>
+    <div class="form-group">
+      <label for="Title">Ton mot de passe:</label>
+      <input type="password" class="form-control"  aria-describedby="authorHelp" placeholder="Entre ici ton mot de passe" name='password'>
+    </div>
+    <div class="form-group">
+      <label for="Title">Confirme ton mot de passe:</label>
+      <input type="password" class="form-control"  aria-describedby="authorHelp" placeholder="Entre ici ta description" name='password_confirmation'>
+    </div>
+    <button type="submit" class="btn btn-danger align-center">Valider</button>
+  </form>
+</div>
