@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get '/index', to: 'static_pages#index'
+  root 'static_pages#index'
   get '/team', to: 'static_pages#team'
   get '/contact', to: 'static_pages#contact'
 
